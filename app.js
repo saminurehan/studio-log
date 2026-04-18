@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Table & Filters
     const logsTableBody = document.getElementById('logs-table-body');
+    const logsMobileContainer = document.getElementById('logs-mobile-container');
     const totalLogsEl = document.getElementById('total-logs');
     const emptyState = document.getElementById('empty-state');
     const filterTeacherSelect = document.getElementById('filter-teacher');
@@ -260,6 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         logsTableBody.innerHTML = '';
+        if(logsMobileContainer) logsMobileContainer.innerHTML = '';
         totalLogsEl.textContent = displayLogs.length;
 
         if (displayLogs.length === 0) {
@@ -279,8 +281,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const formattedEnd = formatTime12Hr(log.endTime);
 
                 row.innerHTML = `
-                    <td class="px-6 py-4 font-medium text-gray-300">${formattedDate}</td>
-                    <td class="px-6 py-4">
+                    <td class="px-4 sm:px-6 py-4 font-medium text-gray-300">${formattedDate}</td>
+                    <td class="px-4 sm:px-6 py-4">
                         <div class="flex items-center gap-2">
                             <div class="w-6 h-6 rounded-full bg-studio-700 flex items-center justify-center text-xs font-bold text-indigo-400 border border-gray-600">
                                 ${log.teacherName.charAt(0).toUpperCase()}
@@ -288,23 +290,58 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span>${log.teacherName}</span>
                         </div>
                     </td>
-                    <td class="px-6 py-4 text-gray-400">
+                    <td class="px-4 sm:px-6 py-4 text-gray-400">
                         <span class="inline-block bg-studio-950 px-2 py-1 rounded border border-gray-800 text-xs">${formattedStart}</span>
                         <span class="mx-1 opacity-50">-</span>
                         <span class="inline-block bg-studio-950 px-2 py-1 rounded border border-gray-800 text-xs">${formattedEnd}</span>
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-4 sm:px-6 py-4">
                         <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
                             <i class="ph-fill ph-timer"></i> ${log.duration}
                         </span>
                     </td>
-                    <td class="px-6 py-4 text-right">
+                    <td class="px-4 sm:px-6 py-4 text-right">
                         <button onclick="deleteLog('${log.id}')" class="text-gray-500 hover:text-red-400 transition-colors p-2 rounded-lg hover:bg-red-400/10" title="Delete Entry">
                             <i class="ph-bold ph-trash text-lg"></i>
                         </button>
                     </td>
                 `;
                 logsTableBody.appendChild(row);
+
+                // Mobile Card Version
+                if(logsMobileContainer) {
+                    const card = document.createElement('div');
+                    card.className = "bg-studio-900/40 border border-gray-800/50 rounded-xl p-4 flex flex-col gap-3 relative";
+                    card.innerHTML = `
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-studio-700 flex items-center justify-center text-sm font-bold text-indigo-400 border border-gray-600 shrink-0">
+                                    ${log.teacherName.charAt(0).toUpperCase()}
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-medium text-sm">${log.teacherName}</h4>
+                                    <div class="text-xs text-gray-500 flex items-center gap-1 mt-0.5">
+                                        <i class="ph-fill ph-calendar-blank"></i> ${formattedDate}
+                                    </div>
+                                </div>
+                            </div>
+                            <button onclick="deleteLog('${log.id}')" class="text-gray-500 hover:text-red-400 transition-colors p-2 -mr-2 -mt-2 rounded-lg hover:bg-red-400/10" title="Delete Entry">
+                                <i class="ph-bold ph-trash text-lg"></i>
+                            </button>
+                        </div>
+                        <div class="flex items-center justify-between mt-1 pt-3 border-t border-gray-800/50">
+                            <div class="flex items-center gap-2 text-xs text-gray-400">
+                                <span class="bg-studio-950 px-2 py-1 rounded border border-gray-800">${formattedStart}</span>
+                                <i class="ph-bold ph-arrow-right text-gray-600"></i>
+                                <span class="bg-studio-950 px-2 py-1 rounded border border-gray-800">${formattedEnd}</span>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
+                                <i class="ph-fill ph-timer"></i> ${log.duration}
+                            </span>
+                        </div>
+                    `;
+                    logsMobileContainer.appendChild(card);
+                }
             });
         }
     }

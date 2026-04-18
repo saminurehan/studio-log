@@ -61,40 +61,40 @@
     <!-- Custom Styles -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-studio-950 text-gray-200 font-sans min-h-screen selection:bg-indigo-500/30 selection:text-indigo-200 pb-12 antialiased bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMSIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAyKSIvPjwvc3ZnPg==')]">
+<body class="bg-studio-950 text-gray-200 font-sans min-h-screen selection:bg-indigo-500/30 selection:text-indigo-200 pb-20 sm:pb-12 antialiased bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMSIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAyKSIvPjwvc3ZnPg==')]">
     
     <div id="toast-container" class="fixed top-4 right-4 z-50 flex flex-col gap-2"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
         
         <!-- Header Section -->
-        <header class="flex flex-col sm:flex-row justify-between items-center mb-8 pb-6 border-b border-gray-800/60 gap-4">
-            <div class="flex items-center gap-4">
-                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-indigo-500/20 relative group cursor-pointer overflow-hidden">
+        <header class="flex flex-col sm:flex-row justify-between items-center mb-6 pb-4 border-b border-gray-800/60 gap-4">
+            <div class="flex items-center gap-3 w-full sm:w-auto">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-indigo-500/20 relative group overflow-hidden shrink-0">
                     <div class="absolute inset-0 bg-white/20 group-hover:opacity-100 opacity-0 transition-opacity"></div>
-                    <i class="ph ph-waveform text-white text-2xl relative z-10"></i>
+                    <i class="ph ph-waveform text-white text-xl sm:text-2xl relative z-10"></i>
                 </div>
-                <div>
-                    <h1 class="text-2xl font-bold text-white tracking-tight">Studio<span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Log</span></h1>
-                    <p class="text-xs text-gray-400 font-semibold tracking-widest uppercase mt-0.5">Teacher Attendance</p>
+                <div class="flex-1">
+                    <h1 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Studio<span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Log</span></h1>
+                    <p class="text-[10px] sm:text-xs text-gray-400 font-semibold tracking-widest uppercase mt-0.5">Teacher Attendance</p>
                 </div>
             </div>
-            <div class="flex items-center gap-6 glass-panel px-5 py-2.5 rounded-xl">
-                <div class="text-right border-r border-gray-700 pr-5">
-                    <div id="current-time" class="text-xl font-bold text-gray-100 tracking-tight">--:--:--</div>
+            <div class="flex items-center justify-between w-full sm:w-auto gap-4 sm:gap-6 glass-panel px-4 sm:px-5 py-2.5 rounded-xl">
+                <div class="text-right border-r border-gray-700 pr-4 sm:pr-5">
+                    <div id="current-time" class="text-lg sm:text-xl font-bold text-gray-100 tracking-tight">--:--:--</div>
                 </div>
                 <div class="text-left">
-                    <div id="current-day" class="text-sm font-medium text-gray-300">---</div>
-                    <div id="current-date" class="text-xs text-gray-500 uppercase tracking-wider">---</div>
+                    <div id="current-day" class="text-xs sm:text-sm font-medium text-gray-300">---</div>
+                    <div id="current-date" class="text-[10px] sm:text-xs text-gray-500 uppercase tracking-wider">---</div>
                 </div>
             </div>
         </header>
 
         <!-- Main Content Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 relative">
             
             <!-- Left Sidebar (Forms) -->
-            <div class="lg:col-span-4 space-y-6 animate-slide-up">
+            <div id="forms-section" class="lg:col-span-4 space-y-6 animate-slide-up block">
                 
                 <!-- Log Session Card -->
                 <div class="glass-panel rounded-2xl p-6 shadow-xl relative overflow-hidden border border-gray-800/50">
@@ -172,10 +172,10 @@
                 
             </div>
 
-            <!-- Right Content (Table) -->
-            <div class="lg:col-span-8 animate-slide-up" style="animation-delay: 0.1s;">
+            <!-- Right Content (History) -->
+            <div id="history-section" class="lg:col-span-8 animate-slide-up hidden lg:block" style="animation-delay: 0.1s;">
                 <div class="glass-panel rounded-2xl shadow-xl h-full flex flex-col border border-gray-800/50 overflow-hidden">
-                    <div class="p-6 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 border-b border-gray-800/50 bg-studio-900/20">
+                    <div class="p-4 sm:p-6 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 border-b border-gray-800/50 bg-studio-900/20">
                         <h2 class="text-lg font-semibold text-white flex items-center gap-2">
                             <div class="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
                                 <i class="ph-bold ph-list-dashes text-emerald-400"></i>
@@ -213,15 +213,21 @@
                         </div>
                     </div>
                     
-                    <div class="overflow-x-auto flex-1 custom-scrollbar relative">
-                        <table class="w-full text-left text-sm whitespace-nowrap min-w-[600px]">
+                    <!-- Mobile Card View (Hidden on sm screens and up) -->
+                    <div id="logs-mobile-container" class="sm:hidden flex-1 overflow-y-auto p-4 space-y-4">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <!-- Desktop Table View (Hidden on extra small screens) -->
+                    <div class="hidden sm:block overflow-x-auto flex-1 custom-scrollbar relative">
+                        <table class="w-full text-left text-sm whitespace-nowrap">
                             <thead class="bg-studio-900/90 text-gray-400 font-medium sticky top-0 backdrop-blur-md z-10 border-b border-gray-700/50 shadow-sm">
                                 <tr>
-                                    <th class="px-6 py-4 uppercase tracking-wider text-xs">Date</th>
-                                    <th class="px-6 py-4 uppercase tracking-wider text-xs">Teacher Name</th>
-                                    <th class="px-6 py-4 uppercase tracking-wider text-xs">Session Time</th>
-                                    <th class="px-6 py-4 uppercase tracking-wider text-xs">Duration</th>
-                                    <th class="px-6 py-4 uppercase tracking-wider text-xs text-right">Actions</th>
+                                    <th class="px-4 sm:px-6 py-4 uppercase tracking-wider text-xs">Date</th>
+                                    <th class="px-4 sm:px-6 py-4 uppercase tracking-wider text-xs">Teacher Name</th>
+                                    <th class="px-4 sm:px-6 py-4 uppercase tracking-wider text-xs">Session Time</th>
+                                    <th class="px-4 sm:px-6 py-4 uppercase tracking-wider text-xs">Duration</th>
+                                    <th class="px-4 sm:px-6 py-4 uppercase tracking-wider text-xs text-right">Actions</th>
                                 </tr>
                             </thead>
                             <tbody id="logs-table-body" class="divide-y divide-gray-800/50 text-gray-300">
@@ -244,6 +250,20 @@
         </div>
     </div>
 
+    <!-- Mobile Bottom Navigation Bar (Hidden on desktop) -->
+    <div class="lg:hidden fixed bottom-0 left-0 right-0 bg-studio-900/95 backdrop-blur-md border-t border-gray-800/80 pb-safe z-50 shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.5)]">
+        <div class="flex items-center justify-around p-2">
+            <button id="tab-btn-log" onclick="switchTab('log')" class="flex flex-col items-center justify-center w-full py-2 px-1 text-indigo-400 bg-indigo-500/10 rounded-xl transition-all">
+                <i class="ph-fill ph-plus-circle text-2xl mb-1"></i>
+                <span class="text-[10px] font-medium tracking-wide">Add</span>
+            </button>
+            <button id="tab-btn-history" onclick="switchTab('history')" class="flex flex-col items-center justify-center w-full py-2 px-1 text-gray-500 hover:text-gray-300 rounded-xl transition-all">
+                <i class="ph-fill ph-clock-counter-clockwise text-2xl mb-1"></i>
+                <span class="text-[10px] font-medium tracking-wide">History</span>
+            </button>
+        </div>
+    </div>
+
     <!-- App Logic -->
     <script src="app.js"></script>
     
@@ -256,6 +276,46 @@
                     .catch(error => console.log('ServiceWorker registration failed: ', error));
             });
         }
+
+        // Mobile Tab Navigation Logic
+        function switchTab(tabName) {
+            const formsSection = document.getElementById('forms-section');
+            const historySection = document.getElementById('history-section');
+            const btnLog = document.getElementById('tab-btn-log');
+            const btnHistory = document.getElementById('tab-btn-history');
+
+            // Reset buttons
+            btnLog.classList.remove('text-indigo-400', 'bg-indigo-500/10');
+            btnLog.classList.add('text-gray-500');
+            btnHistory.classList.remove('text-indigo-400', 'bg-indigo-500/10');
+            btnHistory.classList.add('text-gray-500');
+
+            if (tabName === 'log') {
+                formsSection.classList.remove('hidden');
+                historySection.classList.add('hidden');
+                historySection.classList.remove('flex', 'flex-col'); // Cleanup
+                btnLog.classList.add('text-indigo-400', 'bg-indigo-500/10');
+                btnLog.classList.remove('text-gray-500');
+            } else if (tabName === 'history') {
+                formsSection.classList.add('hidden');
+                historySection.classList.remove('hidden');
+                historySection.classList.add('flex', 'flex-col');
+                btnHistory.classList.add('text-indigo-400', 'bg-indigo-500/10');
+                btnHistory.classList.remove('text-gray-500');
+            }
+        }
+        
+        // Ensure desktop layout remains correct on resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024) { // lg breakpoint in Tailwind
+                document.getElementById('forms-section').classList.remove('hidden');
+                document.getElementById('history-section').classList.remove('hidden');
+            } else {
+                // Re-apply current mobile tab state
+                const isHistoryActive = document.getElementById('tab-btn-history').classList.contains('text-indigo-400');
+                switchTab(isHistoryActive ? 'history' : 'log');
+            }
+        });
     </script>
 </body>
 </html>
