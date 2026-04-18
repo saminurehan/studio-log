@@ -1,6 +1,6 @@
 // --- 1. Cloud Configuration ---
 // REPLACE THIS WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxXTWNOjlzrqGSHM7EGtOesYVtBlr5Go6QatCZDpeWj0V-87ad5T5_p5ZD1hx3NY6fj_g/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxzgj4pdw4_jTitQyOWcbRBNCVW2vlBr9rHu1Dg6EGRC7d-t2lLB8c-CigXgHEq6vqwdg/exec';
 
 // Global State
 let state = {
