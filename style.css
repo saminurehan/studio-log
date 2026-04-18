@@ -1,0 +1,85 @@
+/* Base Variables & Utilities */
+:root {
+  color-scheme: dark;
+}
+
+/* Custom Scrollbar to match dark theme */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #020617; /* studio-950 */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1e293b; /* studio-800 */
+    border-radius: 4px;
+    border: 2px solid #020617; /* create padding effect */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #334155; /* studio-700 */
+}
+
+/* Glassmorphism utility class */
+.glass-panel {
+    background: rgba(15, 23, 42, 0.6); /* studio-900 with opacity */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* Style date and time pickers for dark mode */
+.custom-date-input::-webkit-calendar-picker-indicator,
+.custom-time-input::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    opacity: 0.4;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.custom-date-input::-webkit-calendar-picker-indicator:hover,
+.custom-time-input::-webkit-calendar-picker-indicator:hover {
+    opacity: 0.8;
+}
+
+/* Custom table row hover effects */
+tbody tr {
+    transition: all 0.2s ease;
+}
+
+tbody tr:hover {
+    background-color: rgba(30, 41, 59, 0.4); /* subtle highlight */
+}
+
+/* Toast Notification Animation */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.toast-enter {
+    animation: slideInRight 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.toast-exit {
+    animation: fadeOutRight 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
