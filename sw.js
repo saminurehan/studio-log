@@ -1,13 +1,11 @@
-const CACHE_NAME = "studiolog-cache-v2";
+const CACHE_NAME = "studiolog-cache-v3";
+// Do not cache external CORS restricted URLs directly in install phase
 const ASSETS_TO_CACHE = [
   "./",
   "./index.html",
   "./style.css",
   "./app.js",
-  "./manifest.json",
-  "https://cdn.tailwindcss.com",
-  "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap",
-  "https://unpkg.com/@phosphor-icons/web"
+  "./manifest.json"
 ];
 
 // Install Event
@@ -38,7 +36,6 @@ self.addEventListener("activate", (event) => {
 
 // Fetch Event
 self.addEventListener("fetch", (event) => {
-  // We don't want to cache API requests (like to Google Sheets)
   if (event.request.url.includes("script.google.com") || event.request.url.includes("script.googleusercontent.com")) {
     return;
   }
